@@ -5,9 +5,9 @@ import './styles/index.scss'
 
 
 
-const app = document.querySelector('#root');
-app.innerHTML=`
-	<img src="${WebpackLogo}" alt="${HelloWorld()}">
-	<h1>${HelloWorld()}</h1>
+const root = document.querySelector('#root');
+root.innerHTML=`
+	<img src="${WebpackLogo}" alt="${Hello()}">
+	<h1>${Hello()}</h1>
 `;
 

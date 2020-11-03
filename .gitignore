@@ -1,7 +1,8 @@
 **/.DS_Store
 /node_modules
 /dist
-
+.vscode
+.env
 
 
 package-lock.json

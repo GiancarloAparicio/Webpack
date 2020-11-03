@@ -1,7 +1,8 @@
 const paths = require('./paths');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
 	entry: [paths.src + '/index.js'],
@@ -13,6 +14,9 @@ module.exports = {
 	},
 
 	plugins: [
+		new Dotenv({
+			path: paths.env,
+		}),
 		new CleanWebpackPlugin(),
 
 		new CopyWebpackPlugin([
@@ -26,7 +30,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: 'Webpack',
 			favicon: paths.static + '/favicon.png',
-			template: paths.src + '/index.html',
+			template: paths.src + '/index.pug',
 			filename: 'index.html', // output file
 		}),
 	],
@@ -34,9 +38,13 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.pug$/,
+				loader: 'pug-loader',
+			},
+			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				use: ['babel-loader', 'eslint-loader'],
+				use: ['babel-loader'],
 			},
 
 			{
@@ -51,7 +59,6 @@ module.exports = {
 					{ loader: 'sass-loader', options: { sourceMap: true } },
 				],
 			},
-
 			{
 				test: /\.(?:ico|gif|png|jpg|jpeg|webp|svg)$/i,
 				loader: 'file-loader',

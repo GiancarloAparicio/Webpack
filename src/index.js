@@ -1,13 +1,9 @@
+import { Hello } from './js/Hello';
+import WebpackLogo from './images/logo.svg';
+import './styles/index.scss';
 
-import { Hello } from './js/Hello'
-import WebpackLogo from './images/logo.svg'
-import './styles/index.scss'
-
-
-
-const root = document.querySelector('#root');
-root.innerHTML=`
+const app = document.querySelector('#app');
+app.innerHTML = `
 	<img src="${WebpackLogo}" alt="${Hello()}">
-	<h1>${Hello()}</h1>
+	<h1>${process.env.APP_TITLE_APP}</h1>
 `;
-
